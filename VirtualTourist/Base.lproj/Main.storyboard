@@ -40,31 +40,39 @@
                                     <outletCollection property="gestureRecognizers" destination="RKa-W4-hxg" appends="YES" id="fDa-ST-nBy"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zY4-PL-bnS">
-                                <rect key="frame" x="165" y="617" width="45" height="30"/>
-                                <color key="backgroundColor" red="0.63288956880569458" green="0.090287677943706512" blue="0.36726683378219604" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKo-Zt-H0I">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Pin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILA-mT-Ach">
+                                        <rect key="frame" x="148.5" y="14" width="78" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="mKd-Hg-81T"/>
+                                    <constraint firstItem="ILA-mT-Ach" firstAttribute="centerY" secondItem="eKo-Zt-H0I" secondAttribute="centerY" id="TzD-HC-RmX"/>
+                                    <constraint firstItem="ILA-mT-Ach" firstAttribute="centerX" secondItem="eKo-Zt-H0I" secondAttribute="centerX" id="vJg-Fh-5b1"/>
                                 </constraints>
-                                <state key="normal" title="Clear">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="eyk-mQ-01n" firstAttribute="bottom" secondItem="zY4-PL-bnS" secondAttribute="bottom" constant="20" id="5so-se-uvu"/>
+                            <constraint firstItem="eyk-mQ-01n" firstAttribute="bottom" secondItem="eKo-Zt-H0I" secondAttribute="bottom" id="D0h-4g-Rfn"/>
                             <constraint firstItem="Vqx-JT-aBS" firstAttribute="bottom" secondItem="eyk-mQ-01n" secondAttribute="bottom" id="EVg-Cy-nSd"/>
+                            <constraint firstItem="eyk-mQ-01n" firstAttribute="trailing" secondItem="eKo-Zt-H0I" secondAttribute="trailing" id="Mce-Un-JZV"/>
+                            <constraint firstItem="eKo-Zt-H0I" firstAttribute="leading" secondItem="eyk-mQ-01n" secondAttribute="leading" id="Ocn-6w-d3e"/>
                             <constraint firstItem="Vqx-JT-aBS" firstAttribute="leading" secondItem="eyk-mQ-01n" secondAttribute="leading" id="QaP-TR-DE9"/>
-                            <constraint firstItem="zY4-PL-bnS" firstAttribute="centerX" secondItem="eyk-mQ-01n" secondAttribute="centerX" id="Y8Q-dN-uV0"/>
                             <constraint firstItem="eyk-mQ-01n" firstAttribute="trailing" secondItem="Vqx-JT-aBS" secondAttribute="trailing" id="isb-bB-pTO"/>
+                            <constraint firstItem="eKo-Zt-H0I" firstAttribute="top" secondItem="eyk-mQ-01n" secondAttribute="top" constant="554" id="jny-h7-doM"/>
                             <constraint firstItem="Vqx-JT-aBS" firstAttribute="top" secondItem="eyk-mQ-01n" secondAttribute="top" id="sDs-Bp-zc6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eyk-mQ-01n"/>
                     </view>
                     <navigationItem key="navigationItem" id="zNv-2C-4ZO"/>
                     <connections>
-                        <outlet property="clearButton" destination="zY4-PL-bnS" id="nyP-Vd-8Ey"/>
+                        <outlet property="footerView" destination="eKo-Zt-H0I" id="OUe-9X-6fu"/>
                         <outlet property="mapView" destination="Vqx-JT-aBS" id="Qq2-gK-7s2"/>
                         <segue destination="Qg2-Lh-YGN" kind="show" identifier="showAlbum" id="g8q-Ze-bal"/>
                     </connections>

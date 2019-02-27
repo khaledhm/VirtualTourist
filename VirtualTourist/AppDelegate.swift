@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let dataController = DataController(modelName: "VirtualTourist")
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
         dataController.load()
         let navigationController = window?.rootViewController as! UINavigationController
         let LocationViewController = navigationController.topViewController as! LocationsViewController
@@ -29,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         saveViewContext()
-        
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
@@ -37,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func saveViewContext(){
-        
         try? dataController.viewContext.save()
     }
 

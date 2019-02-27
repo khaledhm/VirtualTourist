@@ -14,8 +14,7 @@ class LocationsViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var footerView: UIView!
-    @IBOutlet weak var clearButton: UIButton!
-    
+
     
     var dataController:DataController!
     
@@ -45,9 +44,10 @@ class LocationsViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.topItem?.title = "Virtual Tourist"
-        //footerView.isHidden = true
+        
         navigationItem.rightBarButtonItem = editButtonItem
-        clearButton.isHidden = true
+        
+        footerView.isHidden = true
         mapView.delegate = self
         mapView.showsUserLocation = true
         
@@ -258,18 +258,17 @@ extension LocationsViewController: NSFetchedResultsControllerDelegate{
         switch type {
             
         case .insert:
-            
-            print("Pin inserted")
+            print("Pin inserted!")
             self.addAnnotation(pinCoordinate)
             
         case .delete:
-            print("Pin deleted")
+            print("Pin deleted!")
             
         case .update:
-            print("Pin updated")
+            print("Pin updated!")
             
         case .move:
-            print("Pin moved")
+            print("Pin moved!")
             
         }
     }

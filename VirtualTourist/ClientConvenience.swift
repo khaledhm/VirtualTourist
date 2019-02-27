@@ -41,37 +41,24 @@ extension Client {
         
         _ = taskForGETMethod( parameters: parameters as [String : AnyObject] , decode: Response.self) { (result, error) in
             
-            
             if let error = error {
-                
                 completionHandlerForFlickerPhoto(false ,nil,"\(error.localizedDescription)")
-            }else {
                 
+            }else {
                 let newResult = result as! Response
                 
                 let resultData = newResult.photos!.photo
                 
                 if newResult.photos!.photo.isEmpty {
-                    
-                    
-                    
                     completionHandlerForFlickerPhoto(true, nil, nil)
                     
                 } else {
-                    
                     completionHandlerForFlickerPhoto(true ,newResult, nil)
                 }
-                
-                
-                
                 
             }
         }
         
     }
-    
-    
-    
-    
     
 }

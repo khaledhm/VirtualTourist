@@ -33,7 +33,6 @@ class AlbumViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         print("Album Page loaded")
         
         refreashButton.isEnabled = false
@@ -53,7 +52,6 @@ class AlbumViewController: UIViewController {
             }
         }
         
-        
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.allowsMultipleSelection = true
@@ -61,14 +59,19 @@ class AlbumViewController: UIViewController {
     
     
     fileprivate func setupFetchedResultControllerWith(_ pin:Pin) {
+        
         print("in setupFetchedResultControllerWith")
+        
         let fetchRequest:NSFetchRequest<Photo> = Photo.fetchRequest()
         let predicate = NSPredicate(format: "pin == %@", pin)
-        fetchRequest.predicate = predicate
-        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         
+        fetchRequest.predicate = predicate
+        
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
+        
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
         
         do {
@@ -79,7 +82,6 @@ class AlbumViewController: UIViewController {
         }
     }
     
-    //API request
     func getPhotosFromFlickr(_ pin: Pin){
         Client.sharedInstance().searchPhotosFormFlickerBy(latitude: pin.latitude, longitude: pin.longitude, totalPages: totalPages, { (success, photoData, errorString)  in
             
@@ -93,15 +95,11 @@ class AlbumViewController: UIViewController {
                     print("\(#function) Downloading \(totalPhotos) photos.")
                     self.storePhotos(response.photos!.photo, forPin: pin)
                     
-                    
                 }else {
-                    
-                    
                     self.updateNoPhotosLabel("This pin has no images")
                 }
                 
             }else{
-                
                 print("\(#function) error:\(errorString!)")
                 self.updateNoPhotosLabel("Error: Please try again!")
                 self.presentAlertWithTitle(title: "Alert", message: errorString!, options: "OK", completion: { (option) in
@@ -112,11 +110,13 @@ class AlbumViewController: UIViewController {
         })
     }
     
+    
     private func updateNoPhotosLabel(_ text: String) {
         self.performUIUpdatesOnMain {
             self.noPhotosLabel.text = text
         }
     }
+    
     
     private func storePhotos(_ photos: [FlickrURL], forPin: Pin) {
         
@@ -125,7 +125,6 @@ class AlbumViewController: UIViewController {
             performUIUpdatesOnMain {
                 
                 if let url = photo.url{
-                    
                     let newPhoto = Photo(context: self.dataController.viewContext)
                     newPhoto.creationDate = Date()
                     newPhoto.id = photo.id
@@ -138,6 +137,7 @@ class AlbumViewController: UIViewController {
             
         }
     }
+    
     
     
     func dropPin(_ pin: Pin){
@@ -156,15 +156,13 @@ class AlbumViewController: UIViewController {
         mapView.setCenter(annotation.coordinate, animated: true)
     }
     
+    
     @IBAction func refreashPhotos(_ sender: UIButton) {
         
         if sender.currentTitle == "New Collection" {
-            
             guard let fetchedResults = self.fetchedResultsController.fetchedObjects else {
                 return
             }
-            
-            //photosUrlArray.removeAll()
             
             for i in fetchedResults {
                 dataController.viewContext.delete(i)
@@ -186,9 +184,6 @@ class AlbumViewController: UIViewController {
     
     
     func deletePhotos() {
-        
-        // delete all selected photos
-        
         var photosToDelete: [Photo] = [Photo]()
         
         for i in selectedIndexes {
