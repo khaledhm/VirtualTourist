@@ -14,7 +14,7 @@ extension Client {
     func searchPhotosFormFlickerBy(latitude:Double ,longitude:Double,totalPages: Int?, _ completionHandlerForFlickerPhoto: @escaping (_ success: Bool,_ photoData: Any?, _ errorString: String?) -> Void) {
         
         
-        // get random page.
+        // get a random page.
         var page: Int {
             if let totalPages = totalPages {
                 let page = min(totalPages, 4000/Constants.FlickrParameterValues.PhotosPerPage)
